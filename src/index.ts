@@ -1,7 +1,10 @@
 import express from 'express';
 import { diaryRouter } from './routes/diaries.ts';
+import cors from 'cors';
 
 const app = express();
+//Permite el acceso a la API desde otros dominios (o puertos)
+app.use(cors());
 app.use(express.json());
 
 const PORT = 3000;

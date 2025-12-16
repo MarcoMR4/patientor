@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Button, Divider, Container, Typography } from '@mui/material';
 
 import { apiBaseUrl } from "./constants";
-import { Patient } from "./types";
+import { Patient, Gender } from "./types";
 
-import patientService from "./services/patients";
+import patientService from "./services/patientsService";
 import PatientListPage from "./components/PatientListPage";
 
 const App = () => {
@@ -16,8 +16,12 @@ const App = () => {
     void axios.get<void>(`${apiBaseUrl}/ping`);
 
     const fetchPatientList = async () => {
-      const patients = await patientService.getAll();
-      setPatients(patients);
+      setPatients(
+        (await patientService.getPatients()).map(obj => ({
+          ...obj,
+          gender: Gender[obj.gender.charAt(0).toUpperCase() + obj.gender.slice(1) as keyof typeof Gender]
+        }))
+      );
     };
     void fetchPatientList();
   }, []);

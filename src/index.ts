@@ -13,7 +13,7 @@ app.get('/', (_req, res) => {
   res.send('Hello World from Express + TypeScript mini server! ;)');
 });
 
-app.get('/ping', (_req, res) => {
+app.get('/api/ping', (_req, res) => {
   console.log('someone pinged here');
   res.send('pong');
 });

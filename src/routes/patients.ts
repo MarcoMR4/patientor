@@ -1,13 +1,11 @@
 import express from 'express';
+import patients from '../services/patientsService';
 
 export const patientsRouter = express.Router();
 
-
-import patients from '../services/patientsService';
-
-
-patientsRouter.get('/', (_req, res) => {
-  res.send(patients.getPatients());
+patientsRouter.get('/', async (_req, res) => {
+  const data = await patients.getPatients();
+  res.json(data);
 })
 
 patientsRouter.post('/', (_req, res) => {

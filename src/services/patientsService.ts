@@ -1,12 +1,15 @@
 import axios from "axios";
-import { Patient, PatientFormValues } from "../types";
+import { 
+  Patient, 
+  PatientFormValues 
+} from "../types";
 
 
 import { apiBaseUrl } from "../constants";
 import patients from "../data/patients";
 
 const getPatients = async () => {
-  return patients;
+  return Promise.resolve(patients);
 };
 
 const create = async (object: PatientFormValues) => {

@@ -6,7 +6,6 @@ import { Button, Divider, Container, Typography } from '@mui/material';
 import { apiBaseUrl } from "./constants";
 import { Patient, Gender } from "./types";
 
-import patientService from "./services/patientsService";
 import PatientListPage from "./components/PatientListPage";
 
 const App = () => {
@@ -16,8 +15,9 @@ const App = () => {
     void axios.get<void>(`${apiBaseUrl}/ping`);
 
     const fetchPatientList = async () => {
+      const { data } = await axios.get(`${apiBaseUrl}/patients`);
       setPatients(
-        (await patientService.getPatients()).map(obj => ({
+        data.map((obj: any) => ({
           ...obj,
           gender: Gender[obj.gender.charAt(0).toUpperCase() + obj.gender.slice(1) as keyof typeof Gender]
         }))

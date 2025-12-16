@@ -11,3 +11,4 @@ patientsRouter.get('/', async (_req, res) => {
 patientsRouter.post('/', (_req, res) => {
   res.send('Saving a patient!');
 })
+

@@ -1,6 +1,7 @@
 import express from 'express';
 import { diaryRouter } from './routes/diaries.ts';
 import { patientsRouter } from './routes/patients.ts';
+import { diagnosesRouter } from './routes/diagnoses.ts';
 import cors from 'cors';
 
 const app = express();
@@ -22,6 +23,8 @@ app.get('/api/ping', (_req, res) => {
 app.use('/api/diaries', diaryRouter);
 
 app.use('/api/patients', patientsRouter);
+
+app.use('/api/diagnoses', diagnosesRouter);
 
 
 app.listen(PORT, () => {

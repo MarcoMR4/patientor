@@ -1,6 +1,7 @@
 import axios from "axios";
 import { 
-  Patient, 
+  Patient,
+  PatientWithoutSsn, 
   PatientFormValues 
 } from "../types";
 
@@ -9,7 +10,9 @@ import { apiBaseUrl } from "../constants";
 import patients from "../data/patients";
 
 const getPatients = async () => {
-  return Promise.resolve(patients);
+  return Promise.resolve(
+    patients.map(({ ssn, ...rest }) => rest)
+  );
 };
 
 const create = async (object: PatientFormValues) => {
